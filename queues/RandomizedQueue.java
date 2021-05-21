@@ -57,7 +57,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         if (numItems - 1 < capacity / 4) {
             reallocate(capacity / 2);
         }
-        swap();
+        swap(numItems);
         Item result = rqueue[numItems-1];
         rqueue[numItems-1] = null; // Prevent loitering
 
@@ -65,13 +65,13 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return result;
     }
 
-    private void swap() {
+    private void swap(int upperOpenBound) {
         if (numItems <= 0) {
             throw new java.util.NoSuchElementException();
         }
-        int swapIndex = StdRandom.uniform(numItems);
-        Item temp = rqueue[numItems-1];
-        rqueue[numItems-1] = rqueue[swapIndex];
+        int swapIndex = StdRandom.uniform(upperOpenBound);
+        Item temp = rqueue[upperOpenBound-1];
+        rqueue[upperOpenBound-1] = rqueue[swapIndex];
         rqueue[swapIndex] = temp;
     }
 
@@ -84,32 +84,36 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return result;
     }
 
-    // return an independent iterator over items in random order
-    public Iterator<Item> iterator() {
-        return new QueueIterator();
-    }
-
     private class QueueIterator implements Iterator<Item> {
         private int currIndex = 0;
 
         public boolean hasNext() {
             return currIndex < numItems;
         }
+
         public Item next() {
             if (!hasNext()) {
                 throw new java.util.NoSuchElementException();
             }
+            swap(numItems-currIndex);
+            Item result = rqueue[numItems-1-currIndex];
             currIndex++;
-            return null;
+            return result;
         }
+
         public void remove() {
             throw new UnsupportedOperationException();
         }
     }
 
+    // return an independent iterator over items in random order
+    public Iterator<Item> iterator() {
+        return new QueueIterator();
+    }
+
     // unit testing (required)
     public static void main(String[] args) {
-        RandomizedQueue rq = new RandomizedQueue<Integer>();
+        RandomizedQueue<Integer> rq = new RandomizedQueue<>();
         rq.enqueue(1);
         rq.dequeue();
         if (!rq.isEmpty()) {
@@ -128,6 +132,11 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         System.out.println(rq.sample());
         System.out.println(rq.sample());
         System.out.println(rq.sample());
+
+        System.out.println("Now testing the Iterator");
+        for (int i : rq) {
+            System.out.println(i);
+        }
 
         int origSize = rq.size();
         System.out.println("Now dequeueing...");
