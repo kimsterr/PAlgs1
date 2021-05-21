@@ -85,7 +85,15 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     private class QueueIterator implements Iterator<Item> {
-        private int currIndex = 0;
+        private int currIndex;
+        private Item[] myArray = rqueue.clone();
+
+        public QueueIterator() {
+            currIndex = 0;
+            if (numItems >= 2) {
+                StdRandom.shuffle(myArray, 0, numItems);
+            }
+        }
 
         public boolean hasNext() {
             return currIndex < numItems;
@@ -96,7 +104,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
                 throw new java.util.NoSuchElementException();
             }
             swap(numItems-currIndex);
-            Item result = rqueue[numItems-1-currIndex];
+            Item result = myArray[numItems-currIndex-1];
             currIndex++;
             return result;
         }

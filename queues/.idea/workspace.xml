@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7a0356c-4303-417e-8035-b8a11d31fd50" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../percolation/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../percolation/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../percolation/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../percolation/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../percolation/Algorithms, Part I.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../percolation/Algorithms, Part I.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../percolation/InteractivePercolationVisualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../percolation/InteractivePercolationVisualizer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../percolation/PercolationVisualizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../percolation/PercolationVisualizer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Permutation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Permutation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RandomizedQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/RandomizedQueue.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +32,7 @@
     <configuration name="RandomizedQueue" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="RandomizedQueue" />
       <module name="queues" />
+      <option name="PROGRAM_PARAMETERS" value="4" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

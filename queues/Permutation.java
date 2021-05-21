@@ -1,9 +1,16 @@
-import edu.princeton.cs.algs4.StdRandom;
-import edu.princeton.cs.algs4.StdStats;
+import edu.princeton.cs.algs4.StdIn;
 
 public class Permutation {
     public static void main(String[] args) {
-        Deque<Integer> myNums = new Deque<>();
-        System.out.println("Stage 1: Create new empty Deque of Integer");
+        int k = Integer.parseInt(args[0]);
+        RandomizedQueue<String> myStrings = new RandomizedQueue<>();
+        
+        while (!StdIn.isEmpty()) {
+            myStrings.enqueue(StdIn.readString());
+        }
+
+        for (int j = 0; j < k; j++) {
+            System.out.println(myStrings.dequeue());
+        }
     }
 }
