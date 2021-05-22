@@ -62,7 +62,73 @@ public class Sorter {
         }
     }
 
+    private static boolean isSorted(Comparable[] a, int lo, int hi) {
+        for (int i = lo+1; i <= hi; i++) {
+            if (less(a[i], a[i-1])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
+        assert isSorted(a, lo, mid);
+        assert isSorted(a, mid+1, hi);
+
+        // Copy over array into aux
+        for (int k = lo; k <= hi; k++) {
+            aux[k] = a[k];
+        }
+
+        // Alter array "a" appropriately
+        int i = lo;
+        int j = mid+1;
+        for (int k = lo; k <= hi; k++) {
+            if (i > mid) {
+                a[k] = aux[j];
+                j++;
+            }
+            else if (j > hi) {
+                a[k] = aux[i];
+                i++;
+            }
+            else {
+                if (less(aux[j], aux[i])) {
+                    a[k] = aux[j];
+                    j++;
+                }
+                else {
+                    a[k] = aux[i];
+                    i++;
+                }
+            }
+        }
+        assert isSorted(a, lo, hi);
+    }
+
+    public static void mergesort(Comparable[] a) { // Wrapper method
+        int N = a.length;
+        if (N == 0 || N ==1) {
+            return;
+        }
+        Comparable[] aux = new Comparable[N];
+        mergesort(a, aux, 0, N-1);
+    }
+    private static void mergesort(Comparable[] a, Comparable[] aux, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        int mid = lo + (hi-lo) / 2;
+
+        mergesort(a, aux, lo, mid);
+        mergesort(a, aux, mid+1, hi);
+
+        merge(a, aux, lo, mid, hi);
+    }
+
     public static void main(String[] args) {
+        // Shellsort trials
+        System.out.println("Shellsort trials");
         Sorter.shellsort(new Integer[0]);
         Integer[] singleton = {1};
         Sorter.shellsort(singleton);
@@ -73,5 +139,18 @@ public class Sorter {
         Integer[] group = {9, 6, 1, 2, 4, 5, 3, 8, 7, 10};
         Sorter.shellsort(group);
         System.out.println(Arrays.toString(group));
+
+        // Mergesort trials
+        System.out.println("Mergesort trials");
+        Sorter.mergesort(new Integer[0]);
+        Integer[] singleton2 = {1};
+        Sorter.mergesort(singleton2);
+        System.out.println(Arrays.toString(singleton2));
+        Integer[] pair2 = {2, 1};
+        Sorter.mergesort(pair2);
+        System.out.println(Arrays.toString(pair2));
+        Integer[] group2 = {9, 6, 1, 2, 4, 5, 3, 8, 7, 10};
+        Sorter.mergesort(group2);
+        System.out.println(Arrays.toString(group2));
     }
 }
