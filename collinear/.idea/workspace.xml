@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Sorter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyMaxPQ.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,10 +80,10 @@
     <property name="settings.editor.selected.configurable" value="settings.saveactions" />
   </component>
   <component name="RunManager">
-    <configuration name="Sorter" type="Application" factoryName="Application">
+    <configuration name="MyMaxPQ" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="14" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Sorter" />
+      <option name="MAIN_CLASS_NAME" value="MyMaxPQ" />
       <module name="Algorithms, Part I" />
       <method v="2">
         <option name="Make" enabled="true" />
