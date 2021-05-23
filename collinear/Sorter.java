@@ -158,10 +158,10 @@ public class Sorter {
         int j = hi;
 
         while (i <= j) {
-            while (i <= j && a[lo].compareTo(a[j]) < 0) {
+            while (i <= j && a[lo].compareTo(a[j]) <= 0) {
                 j--;
             }
-            while (i <= j && a[lo].compareTo(a[i]) > 0) {
+            while (i <= j && a[lo].compareTo(a[i]) >= 0) {
                 i++;
             }
             if (i < j) {
@@ -199,6 +199,39 @@ public class Sorter {
         return a[j];
     }
 
+    // 3-way quicksort
+    public static void quicksort3w(Comparable[] a) {
+        quicksort3w(a, 0, a.length-1);
+    }
+    private static void quicksort3w(Comparable[] a, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+
+        // The "current dude" to be partitioned is at index "lt"
+        int lt = lo;
+        int gt = hi;
+        int i = lo+1;
+
+        while (i <= gt) {
+            if (a[i].compareTo(a[lt]) == 0) {
+                i++;
+            }
+            else if (a[i].compareTo(a[lt]) < 0) {
+                exchange(a, i, lt);
+                i++;
+                lt++;
+            }
+            else {
+                exchange(a, i, gt);
+                gt--;
+            }
+        }
+
+        quicksort3w(a, lo, lt-1);
+        quicksort3w(a, gt+1, hi);
+    }
+
     public static void main(String[] args) {
         // Shellsort trials
         System.out.println("Shellsort trials");
@@ -227,7 +260,7 @@ public class Sorter {
         System.out.println(Arrays.toString(group2));
         // Quicksort trials
         System.out.println("Quicksort trials");
-        Integer[] group3 = {12, 9, 6, 11, 1, 2, 4, 5, 3, 8, 7, 10};
+        Integer[] group3 = {12, 4, 9, 6, 11, 1, 2, 4, 5, 3, 8, 7, 10, 10};
         Integer[] group4 = {0};
         Integer[] group5 = {1, 0};
         Integer[] group6 = {0, 2, 1};
@@ -245,5 +278,19 @@ public class Sorter {
         System.out.println("Select 1st: " + select(group7, 1));
         System.out.println("Select 6th: " + select(group7, 6));
         System.out.println("Select 12th: " + select(group7, 12));
+        // Three-way quicksort trials
+        System.out.println("3-way Quicksort trials");
+        Integer[] group8 = {12, 4, 9, 6, 11, 1, 2, 4, 5, 3, 8, 7, 10, 10};
+        Integer[] group9 = {0};
+        Integer[] group10 = {1, 0};
+        Integer[] group11 = {0, 2, 1};
+        Sorter.quicksort3w(group8);
+        System.out.println(Arrays.toString(group8));
+        Sorter.quicksort3w(group9);
+        System.out.println(Arrays.toString(group9));
+        Sorter.quicksort3w(group10);
+        System.out.println(Arrays.toString(group10));
+        Sorter.quicksort3w(group11);
+        System.out.println(Arrays.toString(group11));
     }
 }
