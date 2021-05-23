@@ -126,6 +126,79 @@ public class Sorter {
         merge(a, aux, lo, mid, hi);
     }
 
+    private static void mergesortBU(Comparable[] a) {
+        int N = a.length;
+        Comparable[] aux = new Comparable[N];
+
+        // Sz is the subarray unit size
+        for (int sz = 1; sz < N; sz = sz*2) {
+            for (int lo = 0; lo < N-sz; lo= lo + 2*sz) {
+                int hi = Math.min(N-1, lo + sz*2-1);
+                int mid = lo + sz - 1;
+                merge(a, aux, lo, mid, hi);
+            }
+        }
+    }
+
+    public static void quicksort(Comparable[] a) {
+        shuffle(a);
+        quicksort(a, 0, a.length-1);
+    }
+    // Work with subset of array "a"
+    private static void quicksort(Comparable[] a, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        int k = partition(a, lo, hi); // partition and get the divider point
+        quicksort(a, lo, k-1);
+        quicksort(a,k+1, hi);
+    }
+    private static int partition(Comparable[] a, int lo, int hi) {
+        int i = lo+1;
+        int j = hi;
+
+        while (i <= j) {
+            while (i <= j && a[lo].compareTo(a[j]) < 0) {
+                j--;
+            }
+            while (i <= j && a[lo].compareTo(a[i]) > 0) {
+                i++;
+            }
+            if (i < j) {
+                exchange(a, i, j);
+            }
+        }
+
+        exchange(a, lo, j);
+        return j;
+    }
+
+    // Given an array of N items, find the kth largest
+    // This is linear time
+    public static Comparable select(Comparable[] a, int k) {
+        shuffle(a);
+        int N = a.length;
+        if (k < 1 || k > N) return null;
+
+        int lo = 0;
+        int hi = N-1;
+        int j = -1;
+
+        while (j+1 != k) {
+            j = partition(a, lo, hi);
+            if (j+1 == k) {
+                return a[j];
+            }
+            else if (j+1 > k) {
+                hi = j-1;
+            }
+            else {
+                lo = j+1;
+            }
+        }
+        return a[j];
+    }
+
     public static void main(String[] args) {
         // Shellsort trials
         System.out.println("Shellsort trials");
@@ -152,5 +225,25 @@ public class Sorter {
         Integer[] group2 = {9, 6, 1, 2, 4, 5, 3, 8, 7, 10};
         Sorter.mergesort(group2);
         System.out.println(Arrays.toString(group2));
+        // Quicksort trials
+        System.out.println("Quicksort trials");
+        Integer[] group3 = {12, 9, 6, 11, 1, 2, 4, 5, 3, 8, 7, 10};
+        Integer[] group4 = {0};
+        Integer[] group5 = {1, 0};
+        Integer[] group6 = {0, 2, 1};
+        Sorter.quicksort(group3);
+        System.out.println(Arrays.toString(group3));
+        Sorter.quicksort(group4);
+        System.out.println(Arrays.toString(group4));
+        Sorter.quicksort(group5);
+        System.out.println(Arrays.toString(group5));
+        Sorter.quicksort(group6);
+        System.out.println(Arrays.toString(group6));
+        // Select trials
+        System.out.println("Select trials");
+        Integer[] group7 = {12, 9, 6, 11, 1, 2, 4, 5, 3, 8, 7, 10};
+        System.out.println("Select 1st: " + select(group7, 1));
+        System.out.println("Select 6th: " + select(group7, 6));
+        System.out.println("Select 12th: " + select(group7, 12));
     }
 }
