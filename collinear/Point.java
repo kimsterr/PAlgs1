@@ -149,7 +149,7 @@ public class Point implements Comparable<Point> {
      */
     public static void main(String[] args) {
         /* YOUR CODE HERE */
-        System.out.println("Kello, Point class!");
+        System.out.println("Hello, Point class!");
 
         Point p1 = new Point(1, 1);
         Point p2 = new Point(1, 2);
