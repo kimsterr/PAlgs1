@@ -5,6 +5,7 @@
  **************************************************************************** */
 
 import java.util.Arrays;
+import java.util.ArrayDeque;
 
 public class Board {
 
@@ -12,6 +13,7 @@ public class Board {
     private int N;
     private int[][] tiles;
     private int hammingDist = -1;
+    private int manhattanDist = -1;
 
     // create a board from an n-by-n array of tiles,
     // where tiles[row][col] = tile at (row, col)
@@ -78,7 +80,38 @@ public class Board {
 
     // sum of Manhattan distances between tiles and goal
     public int manhattan() {
-        return 0;
+        if (manhattanDist > -1) return manhattanDist;
+
+        // If computation actually needed...
+        manhattanDist = 0;
+        int target = 1;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (tiles[i][j] == 0) {
+                    target++;
+                    continue; // Tile-less area cannot contribute to manhattanDist
+                }
+                else if (i == N-1 && j == N-1) {
+                    if (tiles[i][j] != 0) {
+                        manhattanDist += manhattanHelper(tiles[i][j], i, j);
+                    }
+                }
+                else if (tiles[i][j] != target) {
+                    manhattanDist += manhattanHelper(tiles[i][j], i, j);
+                }
+                target++;
+            }
+        }
+
+        return manhattanDist;
+    }
+
+    private int manhattanHelper(int num, int i, int j) {
+        // Find the actual place that "num" should be
+        int actualRow = (num-1) % N;
+        int actualCol = (num-1) / N;
+
+        return Math.abs(i-actualRow) + Math.abs(j-actualCol);
     }
 
     // is this board the goal board?
@@ -109,7 +142,8 @@ public class Board {
 
     // all neighboring boards
     public Iterable<Board> neighbors() {
-        return null;
+        ArrayDeque<Board> neighbors = new ArrayDeque<Board>();
+        return neighbors;
     }
 
     // a board that is obtained by exchanging any pair of tiles
