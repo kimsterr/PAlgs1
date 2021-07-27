@@ -14,6 +14,8 @@ public class Board {
     private int[][] tiles;
     private int hammingDist = -1;
     private int manhattanDist = -1;
+    private int zeroRow = -1;
+    private int zeroCol = -1;
 
     // create a board from an n-by-n array of tiles,
     // where tiles[row][col] = tile at (row, col)
@@ -24,6 +26,10 @@ public class Board {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 this.tiles[i][j] = tiles[i][j];
+                if (this.tiles[i][j] == 0) {
+                    zeroRow = i;
+                    zeroCol = j;
+                }
             }
         }
     }
@@ -143,6 +149,13 @@ public class Board {
     // all neighboring boards
     public Iterable<Board> neighbors() {
         ArrayDeque<Board> neighbors = new ArrayDeque<Board>();
+
+        // What is a "neighbor"?
+        // Take the tile where 0 is, swap it with all possible tiles
+        // use zeroX and zeroY to aid this neighbor
+
+        // Remember to generate completely NEW board and NEW underlying array for the board
+
         return neighbors;
     }
 
