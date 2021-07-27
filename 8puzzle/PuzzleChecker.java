@@ -47,6 +47,7 @@ public class PuzzleChecker {
             // solve the slider puzzle
             Board initial = new Board(tiles);
             System.out.println(initial.toString());
+            System.out.println("Hamming distance is: " + initial.hamming());
             //Solver solver = new Solver(initial);
             //StdOut.println(filename + ": " + solver.moves());
         }

@@ -9,6 +9,7 @@ public class Board {
     // board dimension (board is N x N)
     private int N;
     private int[][] tiles;
+    private int hammingDist = -1;
 
     // create a board from an n-by-n array of tiles,
     // where tiles[row][col] = tile at (row, col)
@@ -31,7 +32,7 @@ public class Board {
         sb.append("\n");
 
         for (int i = 0; i < N; i++) {
-            for (int j = 1; j < N; j++) {
+            for (int j = 0; j < N; j++) {
                 sb.append(String.format("%2d ", tiles[i][j]));
             }
             sb.append("\n"); // end of the row
@@ -47,7 +48,30 @@ public class Board {
 
     // number of tiles out of place
     public int hamming() {
-        return 0;
+        if (hammingDist > -1) return hammingDist;
+
+        // If computation actually needed...
+        hammingDist = 0;
+        int target = 1;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (tiles[i][j] == 0) {
+                    target++;
+                    continue; // Tile-less area cannot contribute to hammingDist
+                }
+                else if (i == N-1 && j == N-1) {
+                    if (tiles[i][j] != 0) {
+                        hammingDist++;
+                    }
+                }
+                else if (tiles[i][j] != target) {
+                    hammingDist++;
+                }
+                target++;
+            }
+        }
+
+        return hammingDist;
     }
 
     // sum of Manhattan distances between tiles and goal
@@ -57,7 +81,7 @@ public class Board {
 
     // is this board the goal board?
     public boolean isGoal() {
-        return true;
+        return hammingDist == 0;
     }
 
     // does this board equal y?
