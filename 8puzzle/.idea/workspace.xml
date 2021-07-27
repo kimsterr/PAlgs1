@@ -39,6 +39,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="106" />
     <option name="y" value="23" />
@@ -84,7 +92,7 @@
     <configuration name="PuzzleChecker" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="PuzzleChecker" />
       <module name="Algorithms, Part I" />
-      <option name="PROGRAM_PARAMETERS" value="puzzle3x3-08.txt" />
+      <option name="PROGRAM_PARAMETERS" value="puzzle3x3-02.txt" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

@@ -48,6 +48,8 @@ public class PuzzleChecker {
             Board initial = new Board(tiles);
             System.out.println(initial.toString());
             System.out.println("Hamming distance is: " + initial.hamming());
+            System.out.println("Here is a twin: ");
+            System.out.println(initial.twin().toString());
             //Solver solver = new Solver(initial);
             //StdOut.println(filename + ": " + solver.moves());
         }
