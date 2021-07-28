@@ -47,8 +47,18 @@ public class PuzzleChecker {
 
             // solve the slider puzzle
             Board initial = new Board(tiles);
+            System.out.println(initial.toString());
+            System.out.println("Hamming distance is: " + initial.hamming());
+            System.out.println("Manhattan distance is: " + initial.manhattan());
+            System.out.println("Here is a twin: ");
+            System.out.println(initial.twin().toString());
             Solver solver = new Solver(initial);
             StdOut.println(filename + ": " + solver.moves());
+            StdOut.println(filename + ": " + solver.isSolvable());
+            StdOut.println("Here is the sequence: ");
+            for (Board b : solver.solution()) {
+                StdOut.println(b);
+            }
         }
     }
 }
