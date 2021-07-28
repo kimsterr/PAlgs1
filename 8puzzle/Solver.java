@@ -12,7 +12,7 @@ public class Solver {
         initial.manhattan();
         initial.hamming();
         MinPQ<Integer> minPQ= new MinPQ<Integer>();
-        minPQ.insert(1);
+        minPQ.insert(2);
         minPQ.delMin();
         initial.isGoal();
     }
