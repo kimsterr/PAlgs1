@@ -90,22 +90,9 @@ public class Board {
 
         // If computation actually needed...
         manhattanDist = 0;
-        int target = 1;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                if (tiles[i][j] == 0) {
-                    target++;
-                    continue; // Tile-less area cannot contribute to manhattanDist
-                }
-                else if (i == N-1 && j == N-1) {
-                    if (tiles[i][j] != 0) {
-                        manhattanDist += manhattanHelper(tiles[i][j], i, j);
-                    }
-                }
-                else if (tiles[i][j] != target) {
-                    manhattanDist += manhattanHelper(tiles[i][j], i, j);
-                }
-                target++;
+                manhattanDist += manhattanHelper(tiles[i][j], i, j);
             }
         }
 
@@ -113,11 +100,13 @@ public class Board {
     }
 
     private int manhattanHelper(int num, int i, int j) {
-        // Find the actual place that "num" should be
-        int actualRow = (num-1) % N;
-        int actualCol = (num-1) / N;
+        if (num == 0) return 0; // Need to have a numbered tile for any impact
 
-        return Math.abs(i-actualRow) + Math.abs(j-actualCol);
+        // Find the actual place that "num" should be
+        int goalRow = (num-1) / N;
+        int goalCol = (num-1) % N;
+
+        return Math.abs(i-goalRow) + Math.abs(j-goalCol);
     }
 
     // is this board the goal board?

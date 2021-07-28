@@ -3,12 +3,18 @@
  *  Date:
  *  Description:
  **************************************************************************** */
+import edu.princeton.cs.algs4.MinPQ;
 
 public class Solver {
 
     // find a solution to the initial board (using the A* algorithm)
     public Solver(Board initial) {
-
+        initial.manhattan();
+        initial.hamming();
+        MinPQ<Integer> minPQ= new MinPQ<Integer>();
+        minPQ.insert(1);
+        minPQ.delMin();
+        initial.isGoal();
     }
 
     // is the initial board solvable? (see below)
