@@ -140,12 +140,58 @@ public class Board {
         ArrayDeque<Board> neighbors = new ArrayDeque<Board>();
 
         // What is a "neighbor"?
-        // Take the tile where 0 is, swap it with all possible tiles
-        // use zeroX and zeroY to aid this neighbor
+        // Take the tile where 0 is, swap it with all possible tiles...keyword is POSSIBLE
+        // use zeroRow and zeroCol to aid this function
+
+        // To the left
+        if (zeroCol > 0) {
+            int[][] leftArr = deepCopy(tiles);
+            swap(leftArr, zeroRow, zeroCol-1, zeroRow, zeroCol);
+            neighbors.add(new Board(leftArr));
+        }
+
+        // To the right
+        if (zeroCol < N-1) {
+            int[][] rightArr = deepCopy(tiles);
+            swap(rightArr, zeroRow, zeroCol+1, zeroRow, zeroCol);
+            neighbors.add(new Board(rightArr));
+        }
+
+        // Above
+        if (zeroRow > 0) {
+            int[][] aboveArr = deepCopy(tiles);
+            swap(aboveArr, zeroRow-1, zeroCol, zeroRow, zeroCol);
+            neighbors.add(new Board(aboveArr));
+        }
+
+        // Below
+        if (zeroRow < N-1) {
+            int[][] belowArr = deepCopy(tiles);
+            swap(belowArr, zeroRow+1, zeroCol, zeroRow, zeroCol);
+            neighbors.add(new Board(belowArr));
+        }
 
         // Remember to generate completely NEW board and NEW underlying array for the board
 
         return neighbors;
+    }
+
+    private int[][] deepCopy(int[][] arr) {
+        int[][] result = new int[N][N];
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                result[i][j] = arr[i][j];
+            }
+        }
+
+        return result;
+    }
+
+    private void swap(int[][] arr, int i1, int j1, int i2, int j2) {
+        int temp = arr[i1][j1];
+        arr[i1][j1] = arr[i2][j2];
+        arr[i2][j2] = temp;
     }
 
     // a board that is obtained by exchanging any pair of tiles
