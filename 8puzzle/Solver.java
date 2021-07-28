@@ -55,21 +55,20 @@ public class Solver {
         heap1.insert(initialNode1);
         heap2.insert(initialNode2);
 
-        while (true) {
-            // We only progressively form the solution for the first heap
-            // because the second heap only applies to the "twin"
-            Node currNode1 = heap1.delMin();
-            solution.addLast(currNode1.board);
+        // Need this for later
+        Node goalNode = null;
 
+        while (true) {
+            Node currNode1 = heap1.delMin();
             if (currNode1.board.manhattan() == 0) {
                 moves = currNode1.currMoves;
+                goalNode = currNode1;
                 break;
             }
             Node currNode2 = heap2.delMin();
             if (currNode2.board.manhattan() == 0) {
                 // This means the puzzle is unsolvable
                 moves = -1;
-                solution = null;
                 break;
             }
 
@@ -88,6 +87,19 @@ public class Solver {
                     heap2.insert(next);
                 }
             }
+        }
+
+        // Form the solution
+        if (moves == -1) {
+            solution = null;
+        }
+        else {
+            Node currNode = goalNode;
+            while (currNode.predecessor != null) {
+                solution.push(currNode.board);
+                currNode = currNode.predecessor;
+            }
+            solution.push(currNode.board);
         }
     }
 

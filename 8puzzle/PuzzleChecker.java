@@ -55,6 +55,10 @@ public class PuzzleChecker {
             Solver solver = new Solver(initial);
             StdOut.println(filename + ": " + solver.moves());
             StdOut.println(filename + ": " + solver.isSolvable());
+            StdOut.println("Here is the sequence: ");
+            for (Board b : solver.solution()) {
+                StdOut.println(b);
+            }
         }
     }
 }
