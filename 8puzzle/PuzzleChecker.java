@@ -54,6 +54,7 @@ public class PuzzleChecker {
             System.out.println(initial.twin().toString());
             Solver solver = new Solver(initial);
             StdOut.println(filename + ": " + solver.moves());
+            StdOut.println(filename + ": " + solver.isSolvable());
         }
     }
 }

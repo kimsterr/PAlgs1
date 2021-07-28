@@ -10,7 +10,7 @@ import java.util.ArrayDeque;
 
 public class Solver {
 
-    private int moves = 0;
+    private int moves;
     private ArrayDeque<Board> solution = new ArrayDeque<Board>();
 
     private static class Node implements Comparable<Node> {
@@ -93,7 +93,7 @@ public class Solver {
 
     // is the initial board solvable? (see below)
     public boolean isSolvable() {
-        return moves == -1;
+        return moves != -1;
     }
 
     // min number of moves to solve initial board; -1 if unsolvable
