@@ -26,6 +26,7 @@
  ******************************************************************************/
 
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
 public class PuzzleChecker {
 
@@ -51,8 +52,8 @@ public class PuzzleChecker {
             System.out.println("Manhattan distance is: " + initial.manhattan());
             System.out.println("Here is a twin: ");
             System.out.println(initial.twin().toString());
-            //Solver solver = new Solver(initial);
-            //StdOut.println(filename + ": " + solver.moves());
+            Solver solver = new Solver(initial);
+            StdOut.println(filename + ": " + solver.moves());
         }
     }
 }

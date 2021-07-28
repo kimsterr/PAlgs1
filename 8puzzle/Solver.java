@@ -11,7 +11,7 @@ import java.util.ArrayDeque;
 public class Solver {
 
     private int moves = 0;
-    ArrayDeque<Board> solution = new ArrayDeque<Board>();
+    private ArrayDeque<Board> solution = new ArrayDeque<Board>();
 
     private static class Node implements Comparable<Node> {
         private Board board;
@@ -49,22 +49,44 @@ public class Solver {
         Node initialNode1 = new Node(initial, 0, null);
         Node initialNode2 = new Node(initial.twin(), 0, null);
 
+        // Construct the two heaps
         MinPQ<Node> heap1 = new MinPQ<Node>();
         MinPQ<Node> heap2 = new MinPQ<Node>();
-
         heap1.insert(initialNode1);
         heap2.insert(initialNode2);
 
         while (true) {
+            // We only progressively form the solution for the first heap
+            // because the second heap only applies to the "twin"
             Node currNode1 = heap1.delMin();
+            solution.addLast(currNode1.board);
+
+            if (currNode1.board.manhattan() == 0) {
+                moves = currNode1.currMoves;
+                break;
+            }
             Node currNode2 = heap2.delMin();
+            if (currNode2.board.manhattan() == 0) {
+                // This means the puzzle is unsolvable
+                moves = -1;
+                solution = null;
+                break;
+            }
 
             for (Board n1: currNode1.board.neighbors()) {
-
+                Node pred = currNode1.predecessor;
+                if (pred == null || !pred.board.equals(n1)) {
+                    Node next = new Node(n1, currNode1.currMoves+1, currNode1);
+                    heap1.insert(next);
+                }
             }
 
             for (Board n2: currNode2.board.neighbors()) {
-
+                Node pred = currNode2.predecessor;
+                if (pred == null || !pred.board.equals(n2)) {
+                    Node next = new Node(n2, currNode2.currMoves+1, currNode2);
+                    heap2.insert(next);
+                }
             }
         }
     }
@@ -81,7 +103,7 @@ public class Solver {
 
     // sequence of boards in a shortest solution; null if unsolvable
     public Iterable<Board> solution() {
-        return null;
+        return solution;
     }
 
     // test client (see below)
