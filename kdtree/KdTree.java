@@ -7,41 +7,46 @@
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
 
-import java.util.TreeSet;
-
 public class KdTree {
-    private TreeSet<Point2D> setOfPoints;
+
+    private class Node {
+        private int[] key;
+        private Node left;
+        private Node right;
+    }
+
+    private Node root;
+    private int size;
 
     // construct an empty set of points
     public KdTree()  {
-        setOfPoints = new TreeSet<Point2D>();
+        root = null;
+        size = 0;
     }
 
     // is the set empty?
     public boolean isEmpty() {
-        return setOfPoints.size() == 0;
+        return root == null;
     }
 
     // number of points in the set
     public int size() {
-        return setOfPoints.size();
+        return size;
     }
 
     // add the point to the set (if it is not already in the set)
     public void insert(Point2D p) {
-        setOfPoints.add(p);
+
     }
 
     // does the set contain point p?
     public boolean contains(Point2D p) {
-        return setOfPoints.contains(p);
+        return true;
     }
 
     // draw all points to standard draw
     public void draw() {
-        for (Point2D p: setOfPoints) {
-            p.draw();
-        }
+
     }
 
     // all points that are inside the rectangle (or on the boundary)
