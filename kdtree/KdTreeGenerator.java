@@ -14,17 +14,25 @@
  *
  ******************************************************************************/
 
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
 
 public class KdTreeGenerator {
 
     public static void main(String[] args) {
         int n = Integer.parseInt(args[0]);
+
+        KdTree myTree= new KdTree();
+
         for (int i = 0; i < n; i++) {
             double x = StdRandom.uniform(0.0, 1.0);
             double y = StdRandom.uniform(0.0, 1.0);
             StdOut.printf("%8.6f %8.6f\n", x, y);
+
+            System.out.println("Size before: " + myTree.size());
+            myTree.insert(new Point2D(x, y));
+            System.out.println("Size after: " + myTree.size());
         }
     }
 }

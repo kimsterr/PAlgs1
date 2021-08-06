@@ -45,6 +45,11 @@ public class KdTree {
         }
     }
 
+    private int size(Node nd) {
+        if (nd == null) return 0;
+        return nd.size;
+    }
+
     // add the point to the set (if it is not already in the set)
     public void insert(Point2D p) {
         if (p == null) throw new java.lang.IllegalArgumentException();
@@ -78,7 +83,7 @@ public class KdTree {
             }
         }
         // Update the size of the current node
-        nd.size = 1 + nd.left.size + nd.right.size;
+        nd.size = 1 + size(nd.left) + size(nd.right);
         return nd;
     }
 
