@@ -6,6 +6,7 @@
 
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
+import java.util.ArrayDeque;
 
 public class KdTree {
 
@@ -127,7 +128,48 @@ public class KdTree {
     // all points that are inside the rectangle (or on the boundary)
     public Iterable<Point2D> range(RectHV rect) {
         if (rect == null) throw new java.lang.IllegalArgumentException();
-        return null;
+
+        ArrayDeque<Point2D> points = new ArrayDeque<Point2D>();
+        range(rect, points, root, true, new double[]{0.0, 0.0, 1.0, 1.0}); // full search area
+
+        return points;
+    }
+    private void range(RectHV rect, ArrayDeque<Point2D> points, Node currNode, boolean useX, double[] searchArea) {
+        if (currNode == null) {
+            return;
+        }
+        if (isInside(currNode.point, rect)) {
+            points.addLast(currNode.point);
+        }
+        if (useX) {
+            double currentX = currNode.point.x(); // Split L/R on vertical line thru here
+            RectHV leftRect = new RectHV(searchArea[0], searchArea[1], currentX, searchArea[3]);
+            RectHV rightRect = new RectHV(currentX, searchArea[1], searchArea[2], searchArea[3]);
+
+            // only explore if have intersection
+            if (rect.intersects(leftRect)) {
+                range(rect, points, currNode.left, false, new double[]{leftRect.xmin(), leftRect.ymin(), leftRect.xmax(), leftRect.ymax()});
+            }
+            if (rect.intersects(rightRect)) {
+                range(rect, points, currNode.right, false, new double[]{rightRect.xmin(), rightRect.ymin(), rightRect.xmax(), rightRect.ymax()});
+            }
+        }
+        else {
+            double currentY = currNode.point.y(); // Split B/T on horizontal line thru here
+            RectHV bottomRect = new RectHV(searchArea[0], searchArea[1], searchArea[2], currentY);
+            RectHV topRect = new RectHV(searchArea[0], currentY, searchArea[2], searchArea[3]);
+
+            // only explore if have intersection
+            if (rect.intersects(bottomRect)) {
+                range(rect, points, currNode.left, true, new double[]{bottomRect.xmin(), bottomRect.ymin(), bottomRect.xmax(), bottomRect.ymax()});
+            }
+            if (rect.intersects(topRect)) {
+                range(rect, points, currNode.right, true, new double[]{topRect.xmin(), topRect.ymin(), topRect.xmax(), topRect.ymax()});
+            }
+        }
+    }
+    private boolean isInside(Point2D p, RectHV rect) {
+        return (p.x() >= rect.xmin() && p.x() <= rect.xmax() && p.y() >= rect.ymin() && p.y() <= rect.ymax());
     }
 
     // a nearest neighbor in the set to point p; null if the set is empty
@@ -137,6 +179,6 @@ public class KdTree {
     }
 
     public static void main(String[] args) {
-
+        System.out.println("Goodbye world!");
     }
 }

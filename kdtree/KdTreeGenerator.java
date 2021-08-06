@@ -15,6 +15,7 @@
  ******************************************************************************/
 
 import edu.princeton.cs.algs4.Point2D;
+import edu.princeton.cs.algs4.RectHV;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -29,10 +30,10 @@ public class KdTreeGenerator {
             double x = StdRandom.uniform(0.0, 1.0);
             double y = StdRandom.uniform(0.0, 1.0);
             StdOut.printf("%8.6f %8.6f\n", x, y);
-
-            System.out.println("Size before: " + myTree.size());
             myTree.insert(new Point2D(x, y));
-            System.out.println("Size after: " + myTree.size());
         }
+
+        RectHV queryRect = new RectHV(0.2, 0.2, 0.8, 0.8);
+        System.out.println(myTree.range(queryRect));
     }
 }

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KdTree$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/KdTree$Node.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KdTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/KdTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KdTreeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/KdTreeGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KdTreeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/KdTreeGenerator.java" afterDir="false" />
@@ -158,5 +159,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/KdTree.java</url>
+          <line>137</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
