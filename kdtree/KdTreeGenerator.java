@@ -15,7 +15,6 @@
  ******************************************************************************/
 
 import edu.princeton.cs.algs4.Point2D;
-import edu.princeton.cs.algs4.RectHV;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -33,7 +32,7 @@ public class KdTreeGenerator {
             myTree.insert(new Point2D(x, y));
         }
 
-        RectHV queryRect = new RectHV(0.2, 0.2, 0.8, 0.8);
-        System.out.println(myTree.range(queryRect));
+        Point2D pQuery = new Point2D(0.0, 0.0);
+        System.out.println(myTree.nearest(pQuery));
     }
 }

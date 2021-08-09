@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c1e4f978-b3bd-4ae1-84e9-9e1170bce808" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KdTree$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/KdTree$Node.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KdTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/KdTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KdTreeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/KdTreeGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KdTreeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/KdTreeGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,6 +171,11 @@
           <url>file://$PROJECT_DIR$/KdTree.java</url>
           <line>185</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/KdTree.java</url>
+          <line>205</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -203,7 +203,7 @@ public class KdTree {
         }
 
         // Update champ point, if warranted
-        if (p.distanceSquaredTo(currNode.point) < p.distanceSquaredTo(champPoint)) {
+        if (champPoint == null || p.distanceSquaredTo(currNode.point) < p.distanceSquaredTo(champPoint)) {
             champPoint = currNode.point;
         }
 
